@@ -1,11 +1,16 @@
+import { Navbar,Welcome,Footer,Transactions,Loader,Services } from "./components"
+
 function App() {
 
   return (
-    <div className="App">
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-    <h1>Hello</h1>
+    <div className="min-h-screen">
+      <div className="gradient-bg-welcome">
+        <Navbar />
+        <Welcome />
+      </div>      
+      <Services />
+      <Transactions />
+      <Footer />
     </div>
   )
 }
