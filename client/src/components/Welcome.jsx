@@ -32,11 +32,25 @@ const Welcome = () => {
             <div className={`rounded-br-3xl ${commanStyles}`}>Blockchain</div>
           </div>
         </div>
-        <div className='flex flex-col flex-1 items-center justify-start w-fill md:mt-0 mt-10'>
+        <div className='flex flex-col flex-1 items-center justify-start w-fill md:mt-1 mt-10'>
           <div className='p-3 justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-full my-5 eth-card white-glassmorpishm'>
-
+            <div className="flex justify-between flex-col w-full h-full">
+              <div className="flex justify-between item-start">
+                <div className='w-9 h-9 rounded-full border-2 border-white flex justify-center item-center'>
+                  <SiEthereum fontSize={28} color="#fff"/>
+                </div>
+                <BsInfoCircle  fontSize={17} color="#fff"/>
+              </div>
+              <div>
+                <p className='text-white font-light text-sm'>
+                  Adress
+                </p>
+                <p className='text-white font-semibold text-lg mt-1'>
+                  Ethereum
+                </p>
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
     </div>
