@@ -1,9 +1,9 @@
-// SPDX-License-Identifier: UNLICNSED
+// SPDX-License-Identifier: UNLICENSED
 
 pragma solidity ^0.8.0;
 
 contract Transactions {
-    uint256 transactionCounter;
+    uint256 transactionCount;
 
     event Transfer(
         address from,
@@ -18,7 +18,7 @@ contract Transactions {
         address sender;
         address receiver;
         uint256 amount;
-        string messgae;
+        string message;
         uint256 timestamp;
         string keyword;
     }
@@ -31,7 +31,7 @@ contract Transactions {
         string memory message,
         string memory keyword
     ) public {
-        transactionCounter++;
+        transactionCount += 1;
         transactions.push(
             TransferStruct(
                 msg.sender,
@@ -61,7 +61,7 @@ contract Transactions {
         return transactions;
     }
 
-    function getTramsactionCount() public view returns (uint256) {
-        return transactionCounter;
+    function getTransactionCount() public view returns (uint256) {
+        return transactionCount;
     }
 }
