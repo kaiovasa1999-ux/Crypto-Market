@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{ useContext } from 'react';
 import { AiFillAlipayCircle } from 'react-icons/ai';
 import { SiEthereum } from 'react-icons/si';
 import {BsInfoCircle} from 'react-icons/bs';
 
 import {Loader} from './';
+import { TransactionContext } from '../context/TransactionContext';
 
 const commanStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
@@ -20,13 +21,11 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 );
 
 const Welcome = () => {
+  
+  const {connectWallet} = useContext(TransactionContext);
 
-  const connectWallet =() =>{
-  const handleSubmit = () =>{
-
-  }
-    
-  }
+  const handleSubmit = () =>{}
+  
   return (
     <div className="flex w-full justify-center items-center">
       <div className="flex mf:flex-row  flex-col items-start justify-between md:p-20 py-12 px-4 ">

@@ -2,7 +2,7 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   mode: "jit",
-  darkMode: false,
+  darkMode: "media",
   theme: {
     fontFamily: {
       display: ["Open Sans", "sans-serif"],
