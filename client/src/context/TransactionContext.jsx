@@ -25,7 +25,9 @@ export const TransactionProvider = ({children}) => {
 
         const accounts = await ethereum.request({method: "eth_accounts"});
         
-        console.log(accounts);
+        if(accounts.length){
+          setCurrentAccount(accounts[0]);
+        }
     }
     
     const connectWallet = async () => {
