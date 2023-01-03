@@ -18,6 +18,11 @@ const getEthereumContract = () =>{
 
 export const TransactionProvider = ({children}) => {
     const [currentAccount,setCurrentAccount] = useState('');
+    const [formData,setFormData] = useState({addressTo:'',amount:'',keyword:'',message:''})
+
+    const handleChanges = (e,name) =>{
+      setFormData((prevState) => ({...prevState,[name]:e.target.value}))
+    }
 
     const checkIfWalletIsConnected = async () =>{
 
@@ -54,11 +59,26 @@ export const TransactionProvider = ({children}) => {
       }
     };
 
+    const MakeTransaction = async () =>{
+      try {
+        
+        if(!ethereum) return alert ("Please install Metamask")
+        const {addressTo,amount,keyword,message} = formData;
+
+        getEthereumContract();
+        
+      } catch (error) {
+        console.log(error);
+  
+        throw new Error("No ethereum object");
+      }
+    }
+
     useEffect(() =>{
         checkIfWalletIsConnected();
     },[]);
     return (
-        <TransactionContext.Provider value={{connectWallet,currentAccount}}>
+        <TransactionContext.Provider value={{connectWallet,currentAccount,formData,MakeTransaction,handleChanges}}>
             {children}
         </TransactionContext.Provider>
     )
