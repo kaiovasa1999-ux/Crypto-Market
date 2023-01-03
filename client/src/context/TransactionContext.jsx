@@ -12,13 +12,15 @@ const getEthereumContract = () =>{
     const signer = provider.getSigner();
     const transactionsContract= new ethers.Contract(contractAddress,contractABI,signer);
 
-    console.log(provider,signer,transactionsContract)
+    return transactionsContract;
 }
 
 
 export const TransactionProvider = ({children}) => {
     const [currentAccount,setCurrentAccount] = useState('');
     const [formData,setFormData] = useState({addressTo:'',amount:'',keyword:'',message:''})
+    const [isLoading,setIsLoading] = useState(false);
+    const [transactionCount,setTransactionCount] = useState(localStorage.getItem('transactionCount'));
 
     const handleChanges = (e,name) =>{
       setFormData((prevState) => ({...prevState,[name]:e.target.value}))
@@ -63,13 +65,33 @@ export const TransactionProvider = ({children}) => {
       try {
         
         if(!ethereum) return alert ("Please install Metamask")
-        const {addressTo,amount,keyword,message} = formData;
 
-        getEthereumContract();
-        
+        const {addressTo,amount,keyword,message} = formData;
+        const transactionContract = getEthereumContract();
+        const parseAmount = ethereum.utils.parseEther(amount);
+
+        await ethereum.request({method: 'sendTransaction',params:
+         [{
+          from: currentAccount,
+          to: addressTo,
+          gas: '0x0012', //wai 18
+          value: parseAmount._hex,
+        }]
+      });
+      const transactionHash =  await transactionContract.addToBlockchain(addressTo,parseAmount,message,keyword)
+      setIsLoading(true);
+
+      console.log(`loading -${transactionHash.hash}`);
+      await transactionHash.wait();
+      setIsLoading(false);
+
+      console.log(`done -${transactionHash.hash}`);
+      const transactionCount = transactionContract.getTransactionCount();
+      setTransactionCount(transactionCount.toNumber());
+     
+
       } catch (error) {
         console.log(error);
-  
         throw new Error("No ethereum object");
       }
     }
