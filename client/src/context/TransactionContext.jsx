@@ -21,11 +21,22 @@ export const TransactionProvider = ({children}) => {
 
     const checkIfWalletIsConnected = async () =>{
 
+      try {
+
         if(!ethereum) return alert ("Please install Metamask")
 
         const accounts = await ethereum.request({method: "eth_accounts"});
-        
-        console.log(accounts);
+        if(accounts.length){
+          // do something
+        }else{
+          console.log("No accounts detected!")
+        }
+
+      } catch (error) {
+        console.log(error);
+  
+        throw new Error("No ethereum object");
+      }
     }
     
     const connectWallet = async () => {
@@ -47,7 +58,7 @@ export const TransactionProvider = ({children}) => {
         checkIfWalletIsConnected();
     },[]);
     return (
-        <TransactionContext.Provider value={{connectWallet}}>
+        <TransactionContext.Provider value={{connectWallet,currentAccount}}>
             {children}
         </TransactionContext.Provider>
     )
