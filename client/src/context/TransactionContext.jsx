@@ -53,6 +53,7 @@ export const TransactionProvider = ({children}) => {
         const accounts = await ethereum.request({ method: "eth_sendTransaction", });
   
         setCurrentAccount(accounts[0]);
+
         window.location.reload();
       } catch (error) {
         console.log(error);
