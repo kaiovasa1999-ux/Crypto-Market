@@ -26,6 +26,7 @@ const Welcome = () => {
     currentAccount,
     formData,
     MakeTransaction,
+    isLoading,
     handleChanges} = useContext(TransactionContext);
   const handleSubmit = (e) => {
     const {addressTo,amount,keyword,message} = formData;
@@ -83,7 +84,7 @@ const Welcome = () => {
             <Input placeholder="Eneter Message" name="message" type="text" handleChanges={handleChanges} />
             <div  className='h-[1px] w-full bg-gray-400 my-2'/>
 
-            {false ? (
+            {isLoading ? (
               <Loader />
             ) : (
                 <button type='button'
