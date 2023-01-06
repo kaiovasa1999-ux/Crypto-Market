@@ -33,19 +33,19 @@ const Services = () => {
       <div className='flex-1 flex flex-col justify-start items-center'>
         <ServiceCard 
           color="bg-[#2952E3]"
-          title="Kaiovasa"
+          title="Security"
           icon={<BsShieldFillCheck fontSize={22} className='text-white'/>}
           subtitle="kaiovasa2 security subtitle"
         />
         <ServiceCard 
-          color="bg-[#2952E3]"
-          title="Kaiovasa1"
-          icon={<BiSearchAlt fontSize={22} className='text-white'/>}
+          color="bg-[#87ff29]"
+          title="Best Services"
+          icon={<BiSearchAlt fontSize={22} className='text-black'/>}
           subtitle="kaiovasa2 security subtitle"
         />
         <ServiceCard 
-          color="bg-[#2952E3]"
-          title="Kaiovasa2"
+          color="bg-[#ff5071]"
+          title="Feed back "
           icon={<RiHeart2Fill fontSize={22}  className='text-white'/>}
           subtitle="kaiovasa2 security subtitle"
         />
