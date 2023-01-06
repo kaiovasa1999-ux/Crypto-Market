@@ -4,7 +4,6 @@ import { BiSearchAlt } from 'react-icons/bi';
 // import { IconName } from "react-icons/bs";
 import { RiHeart2Fill } from "react-icons/ri";
 
-
 const ServiceCard = ({color,title,icon,subtitle}) =>{
   return (
     <div className='flex flex-col flex-row justify-start items-center white-glassmorphism p-3 m-2 cursor-pointer hover:shadow-xl '>
@@ -12,7 +11,7 @@ const ServiceCard = ({color,title,icon,subtitle}) =>{
         {icon}
       </div>
       <div className='ml-5 flex flex-col flex-1'>
-        <h3 className='font-bold mt-2 text-white text-lg '>{title}</h3>
+        <h3 className='font-bold mt-2 text-white text-lg'>{title}</h3>
         <p className='mt-2 text-white text-lg'>{subtitle}</p>
       </div>
     </div>
