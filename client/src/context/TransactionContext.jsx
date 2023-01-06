@@ -21,6 +21,7 @@ export const TransactionProvider = ({children}) => {
     const [formData,setFormData] = useState({addressTo:'',amount:'',keyword:'',message:''})
     const [isLoading,setIsLoading] = useState(false);
     const [transactionCount,setTransactionCount] = useState(localStorage.getItem('transactionCount'));
+    const [transactions,setTransactions] = useState([]);
 
     const handleChanges = (e,name) =>{
       setFormData((prevState) => ({...prevState,[name]:e.target.value}))
@@ -35,6 +36,8 @@ export const TransactionProvider = ({children}) => {
         const accounts = await ethereum.request({method: "eth_accounts"});
         if(accounts.length > 0) {
           setCurrentAccount(accounts[0]);
+          getPossibleTransactions();
+          
         }else{
           console.log("No accounts detected!")
         }
@@ -45,7 +48,7 @@ export const TransactionProvider = ({children}) => {
         throw new Error("No ethereum object");
       }
     }
-    
+
     const connectWallet = async () => {
       try {
         if (!ethereum) return alert("Please install MetaMask.");
@@ -98,14 +101,55 @@ export const TransactionProvider = ({children}) => {
       }
     }
 
+    const checkIfTransactionExist = async () =>{
+      try {
+
+        const transactionsContract = getEthereumContract();
+        const transactionsCount = await transactionsContract.getTransactionCount();
+        window.localStorage.setItem("transactionsCount",transactionsCount)
+
+      } catch (error) {
+        throw new Error("No ethereum object");
+      }
+    }
+    const getPossibleTransactions = async () =>{
+
+      try {
+
+        if(!ethereum) return alert ("Please install Metamask")
+        const transactionsContract = getEthereumContract();
+
+        const transactionHistory = await transactionsContract.getAllTransactions();
+
+        const structuredTransactions = transactionHistory.map((t) => ({
+          addressTo: t.receiver,
+          addressFrom: t.sender,
+          timestamp: new Date(t.timestamp.toNumber() * 1000).toLocaleString(),
+          message: t.message,
+          keyword: t.keyword,
+          amount: parseInt(t.amount._hex) / (10 ** 18)
+        }));
+
+        console.log(structuredTransactions);
+
+        setTransactions(structuredTransactions);
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     useEffect(() =>{
         checkIfWalletIsConnected();
+        checkIfTransactionExist()
     },[]);
     return (
         <TransactionContext.Provider
          value={{connectWallet,
                 currentAccount,
                 formData,
+                transactions,
+                isLoading,
                 MakeTransaction,
                 handleChanges}}>
              {children}

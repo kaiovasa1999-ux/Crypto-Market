@@ -98,7 +98,7 @@ const TramsactionCard = ({addressTo,message, addressFrom,amount,timestamp,url,ke
 }
 
 const Transactions = () => {
-  const currentAccount = useContext(TransactionContext);
+  const {currentAccount} = useContext(TransactionContext);
   return (
     <div className='flex w-full justify-center items-centr 2xl px-20 gradient-bg-transactions'>
       <div className='flex flex-col md:p-12 py-12 px-4'>
