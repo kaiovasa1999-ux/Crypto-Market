@@ -1,7 +1,7 @@
 import React,{ useContext } from 'react';
-import { AiFillAlipayCircle } from 'react-icons/ai';
 import { SiEthereum } from 'react-icons/si';
 import {BsInfoCircle} from 'react-icons/bs';
+import { shortenAddressChars } from "../utils/shortenAddressChars";
 
 import {Loader} from './';
 import { TransactionContext } from '../context/TransactionContext';
@@ -27,7 +27,6 @@ const Welcome = () => {
     formData,
     MakeTransaction,
     handleChanges} = useContext(TransactionContext);
-
   const handleSubmit = (e) => {
     const {addressTo,amount,keyword,message} = formData;
 
@@ -69,7 +68,7 @@ const Welcome = () => {
               </div>
               <div>
                 <p className='text-white font-light text-sm'>
-                  Adress
+                  {shortenAddressChars(currentAccount)}
                 </p>
                 <p className='text-white font-semibold text-lg mt-1'>
                   Ethereum
