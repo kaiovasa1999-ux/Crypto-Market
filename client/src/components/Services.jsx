@@ -1,12 +1,13 @@
 import React from 'react';
 import { BsShieldFillCheck } from 'react-icons/bs';
 import { BiSearchAlt } from 'react-icons/bi';
-// import { RiHaert2Fill} from 'react-icons/ri';
+// import { IconName } from "react-icons/bs";
+import { RiHeart2Fill } from "react-icons/ri";
 
 
 const ServiceCard = ({color,title,icon,subtitle}) =>{
   return (
-    <div className='flex flex-row justify-start items-center p-3 m-2 cursor-pointer hover:shadow-xl '>
+    <div className='flex flex-col flex-row justify-start items-center white-glassmorphism p-3 m-2 cursor-pointer hover:shadow-xl '>
       <div className={`w-9 h-9 rounded-full flex justify-center items-center ${color}`}>
         {icon}
       </div>
@@ -20,7 +21,7 @@ const ServiceCard = ({color,title,icon,subtitle}) =>{
 
 const Services = () => {
   return (
-    <div className="flex w-fill justify-center items-center gradient-bg-services">
+    <div className="flex flex-col md:flex-row w-fill justify-center items-center gradient-bg-services">
       <div className="flex mf-flex-row flex-col items-center justify-betweem md:p-20 py-12 px-4">
         <div className='flex-1 flex flex-col justify-start items-start'>
             <h1 className='text-white text-3xl sm: text-5xl py-2 text-gradient'>Services Web
@@ -31,9 +32,21 @@ const Services = () => {
       </div>
       <div className='flex-1 flex flex-col justify-start items-center'>
         <ServiceCard 
-          color="bg-[#2552E3]"
+          color="bg-[#2952E3]"
           title="Kaiovasa"
-          icon={<BsShieldFillCheck fontSize={21} className='text-white'/>}
+          icon={<BsShieldFillCheck fontSize={22} className='text-white'/>}
+          subtitle="kaiovasa2 security subtitle"
+        />
+        <ServiceCard 
+          color="bg-[#2952E3]"
+          title="Kaiovasa1"
+          icon={<BiSearchAlt fontSize={22} className='text-white'/>}
+          subtitle="kaiovasa2 security subtitle"
+        />
+        <ServiceCard 
+          color="bg-[#2952E3]"
+          title="Kaiovasa2"
+          icon={<RiHeart2Fill fontSize={22}  className='text-white'/>}
           subtitle="kaiovasa2 security subtitle"
         />
       </div>
