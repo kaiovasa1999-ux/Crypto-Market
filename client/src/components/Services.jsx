@@ -38,14 +38,14 @@ const Services = () => {
           subtitle="kaiovasa2 security subtitle"
         />
         <ServiceCard 
-          color="bg-[#87ff29]"
+          color="bg-[#2952E3]"
           title="Best Services"
-          icon={<BiSearchAlt fontSize={22} className='text-black'/>}
+          icon={<BiSearchAlt fontSize={22} className='text-white'/>}
           subtitle="kaiovasa2 security subtitle"
         />
         <ServiceCard 
-          color="bg-[#ff5071]"
-          title="Feed back "
+          color="bg-[#2952E3]"
+          title="Feed back"
           icon={<RiHeart2Fill fontSize={22}  className='text-white'/>}
           subtitle="kaiovasa2 security subtitle"
         />

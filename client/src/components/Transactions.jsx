@@ -33,7 +33,7 @@ let demoDataTransactions = [
   {
     id: 4,
     url: "https://i.pinimg.com/originals/68/a0/9e/68a09e774e98242871c2db0f99307420.gif",
-    message: "",
+    message: "I never stop learning mate !!!",
     timestamp: "12/21/2021, 4:33:21 PM",
     addressFrom: "0xCF8e569A97C423952DdFf902375C7C76549A6A90",
     amount: "0.01",
@@ -60,7 +60,7 @@ let demoDataTransactions = [
 ];
 
 
-const TramsactionCard = ({addressTo, addressFrom,amount,timestamp,url}) =>{
+const TramsactionCard = ({addressTo,message, addressFrom,amount,timestamp,url}) =>{
   return  (
     <div className='bg-[#181918] m-4 flex flex-1 
     2xl:min-w-[450px]
@@ -77,6 +77,15 @@ const TramsactionCard = ({addressTo, addressFrom,amount,timestamp,url}) =>{
             <p className='text-white text-base '>AddressTo: {shortenAddressChars(addressTo)}</p>
           </a>
           <p className='text-white text-base'>Amoint {amount} ETH</p>
+          {message && (
+            <>
+            <br />
+            <p className='text-white text-base message'>Message: {message}</p>
+            </>
+          )}
+          <div className='bg-black p-3 px-4 w-max rounded-3xl py-4 mt-2 shadow-2xl'>
+            <p className='text-[#37c7da] font-bold'>{timestamp}</p>
+          </div>
         </div>
       </div>
     </div>
